@@ -14,30 +14,46 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', (req, res) =>{
-  res.render('home', {homeStartingContent: homeStartingContent});
+
+class postConstructor {
+  constructor(title, content) {
+    this.title = title;
+    this.content = content;
+  }
+}
+
+
+// HOME
+app.get('/', (req, res) => {
+  res.render('home', { homeStartingContent: homeStartingContent });
 });
 
-app.get('/about', (req, res) =>{
-  res.render('about', {aboutContent: aboutContent});
+// ABOUT
+app.get('/about', (req, res) => {
+  res.render('about', { aboutContent: aboutContent });
 });
 
-app.get('/contact', (req, res) =>{
-  res.render('contact', {contactContent: contactContent});
+// CONTACT
+app.get('/contact', (req, res) => {
+  res.render('contact', { contactContent: contactContent });
 });
 
-app.get('/compose', (req, res) =>{
-  res.render('compose');
-});
+app.route('/compose')
+  .get((req, res) => {
+    res.render('compose');
+  })
+  .post((req, res) => {
+    let title = req.body.postTitle;
+    let content = req.body.postContent;
+    const post = new postConstructor(title, content);
+    console.log(JSON.stringify(post));
+  });
 
-app.post('/compose', (req, res) =>{
-  console.log(req.body.newTitle);
-  console.log(req.body.newPost);
-});
 
-app.post('/', (req, res) => {
-  res.redirect('/');
-});
+
+
+
+
 
 
 // SERVER RUNNING
