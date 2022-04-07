@@ -9,8 +9,10 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded({extended: true}));
-app.use(express.static("public"));
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get('/', (req, res) =>{
   res.render('home', {homeStartingContent: homeStartingContent});
@@ -26,6 +28,11 @@ app.get('/contact', (req, res) =>{
 
 app.get('/compose', (req, res) =>{
   res.render('compose');
+});
+
+app.post('/compose', (req, res) =>{
+  console.log(req.body.newTitle);
+  console.log(req.body.newPost);
 });
 
 app.post('/', (req, res) => {
