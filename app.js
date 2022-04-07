@@ -24,10 +24,10 @@ class postConstructor {
 
 let allPosts = [];
 
+
 // HOME
 app.get('/', (req, res) => {
-  res.render('home', { homeStartingContent: homeStartingContent });
-  console.log(allPosts);
+  res.render('home', { homeStartingContent: homeStartingContent, homeContent: allPosts});
 });
 
 // ABOUT
@@ -48,7 +48,7 @@ app.route('/compose')
     let title = req.body.postTitle;
     let content = req.body.postContent;
     const post = new postConstructor(title, content);
-    console.log(JSON.stringify(post));
+  /* console.log(JSON.stringify(post)); */
     allPosts.push(post);
     res.redirect('/');
   });
