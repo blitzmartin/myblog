@@ -8,6 +8,7 @@
     <% for (let i=0; i < homeContent.length; i++) { %>
         <h2>Day <%=i+1%></h2>
         <h3><%= homeContent[i].title %></h3>
+        <h6><em><%= homeContent[i].date %></em></h6>
         <p><%= homeContent[i].content %></p>
     <% } %>
 

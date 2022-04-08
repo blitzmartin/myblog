@@ -16,9 +16,11 @@ app.use(express.json());
 
 
 class postConstructor {
-  constructor(title, content) {
+  constructor(title, content, date, id) {
     this.title = title;
     this.content = content;
+    this.date = date;
+    this.id = id;
   }
 }
 
@@ -40,6 +42,7 @@ app.get('/contact', (req, res) => {
   res.render('contact', { contactContent: contactContent });
 });
 
+// COMPOSE
 app.route('/compose')
   .get((req, res) => {
     res.render('compose');
@@ -47,8 +50,10 @@ app.route('/compose')
   .post((req, res) => {
     let title = req.body.postTitle;
     let content = req.body.postContent;
-    const post = new postConstructor(title, content);
-  /* console.log(JSON.stringify(post)); */
+    let date = Date();
+    let id = Date.now() + Math.floor(Math.random());
+    const post = new postConstructor(title, content, date, id);
+    console.log(JSON.stringify(post));
     allPosts.push(post);
     res.redirect('/');
   });
