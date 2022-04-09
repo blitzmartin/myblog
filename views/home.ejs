@@ -8,7 +8,7 @@
     <% for (let i=0; i < homeContent.length; i++) { %>
         <h2><%= homeContent[i].title %></h2>
         <h6><em><%= homeContent[i].date %></em></h6>
-        <p><%= homeContent[i].content %></p>
+        <p><%= homeContent[i].content.substring(0,100) + "..."; %></p>
     <% } %>
 
 <%- include ('partials/footer'); %>
