@@ -31,6 +31,16 @@ app.get('/', (req, res) => {
   res.render('home', { homeStartingContent: homeStartingContent, homeContent: allPosts});
 });
 
+// posts/Post-title
+app.get('/posts/:id', (req, res) =>{
+  const requestedTitle = req.params.id;
+  allPosts.forEach(element => {
+    if (requestedTitle.replace(' ', '-').toLowerCase() === element.title.replace(' ', '-').toLowerCase()){
+      res.render('posts', { postTitle: element.title, postDate: element.date ,postContent: element.content});
+    }
+  })
+})
+
 // ABOUT
 app.get('/about', (req, res) => {
   res.render('about', { aboutContent: aboutContent });
@@ -56,7 +66,7 @@ app.route('/compose')
     let date = `${DD}/${MM}/${YYYY}`;
     let id = Date.now() + Math.floor(Math.random());
     const post = new postConstructor(title, content, date, id);
-    console.log(JSON.stringify(post));
+  //  console.log(JSON.stringify(post)); log posts array
     allPosts.push(post);
     res.redirect('/');
   });
