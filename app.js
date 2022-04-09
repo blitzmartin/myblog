@@ -49,7 +49,11 @@ app.route('/compose')
   .post((req, res) => {
     let title = req.body.postTitle;
     let content = req.body.postContent;
-    let date = Date();
+    let today = new Date();
+    let DD = today.getDate();
+    let MM = today.getMonth() + 1;
+    let YYYY = today.getFullYear();
+    let date = `${DD}/${MM}/${YYYY}`;
     let id = Date.now() + Math.floor(Math.random());
     const post = new postConstructor(title, content, date, id);
     console.log(JSON.stringify(post));
