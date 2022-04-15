@@ -12,13 +12,12 @@ const showHomepage = function (req, res) {
 };
 
 
-// posts/Post-title
+// posts/Post-title    NEEDS FIX!!!!!!!
 const showOnePost = function (req, res) {
-    blogModel.find()
+    blogModel.findOne({'title': req.params.id})  //titolo
     .then(data => {
-      res.render('posts', {homeContent: data});
+      res.render('posts', {post: data});
     })
 }
-
 
 module.exports = { showHomepage, showOnePost };
