@@ -1,9 +1,7 @@
 const express = require("express");
 const ejs = require("ejs");
-
-const homeStartingContent = "Lorem ipsum dolor sit amet. Et iusto consequatur et quia omnis et delectus recusandae in totam nemo. Sed similique quidem 33 voluptatem veniam eos magnam galisum. ";
-const aboutContent = "Non magnam optio a repudiandae nihil qui libero labore sit reiciendis amet in asperiores minus hic ipsum esse et voluptas dolorem. Id sapiente consequatur ea autem alias aut molestiae soluta enim distinctio qui nemo repellat id blanditiis ipsa ut necessitatibus sunt. Ut autem consequuntur et sint error et quam numquam ut dolores libero est blanditiis tempore et quisquam possimus et asperiores voluptas? Sit distinctio repudiandae At aliquam quaerat est perferendis laboriosam aut tempore explicabo?";
-const contactContent = "Est velit iure ad expedita voluptates hic explicabo quidem id vitae molestias aut perspiciatis consectetur et delectus pariatur.Ea dicta enim eos aliquam veritatis hic quia temporibus ad libero necessitatibus. Eos soluta officiis ex enim obcaecati qui tenetur tenetur.";
+const mongoose = require('mongoose');
+const dotenv = require('dotenv')
 
 const app = express();
 
@@ -12,6 +10,34 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Connect to MongoDB server on port 27017 and database
+dotenv.config();
+mongoose.connect(process.env.DB_SERVER)
+.then(() => console.log('Connected to DB server...'))
+.catch((err) => console.log(err));
+
+
+// SERVER RUNNING
+const port = process.env.PORT || 3000;
+const hostname = 'localhost';
+
+app.listen(port, hostname, (err) => {
+  if (err) {
+    return console.log("Something went wrong: " + err);
+  } else {
+    console.log(`Server running on port ${port}...`)
+  }
+})
+
+///////////////
+
+const homeStartingContent = "Lorem ipsum dolor sit amet. Et iusto consequatur et quia omnis et delectus recusandae in totam nemo. Sed similique quidem 33 voluptatem veniam eos magnam galisum. ";
+const aboutContent = "Non magnam optio a repudiandae nihil qui libero labore sit reiciendis amet in asperiores minus hic ipsum esse et voluptas dolorem. Id sapiente consequatur ea autem alias aut molestiae soluta enim distinctio qui nemo repellat id blanditiis ipsa ut necessitatibus sunt. Ut autem consequuntur et sint error et quam numquam ut dolores libero est blanditiis tempore et quisquam possimus et asperiores voluptas? Sit distinctio repudiandae At aliquam quaerat est perferendis laboriosam aut tempore explicabo?";
+const contactContent = "Est velit iure ad expedita voluptates hic explicabo quidem id vitae molestias aut perspiciatis consectetur et delectus pariatur.Ea dicta enim eos aliquam veritatis hic quia temporibus ad libero necessitatibus. Eos soluta officiis ex enim obcaecati qui tenetur tenetur.";
+
+
+
 
 
 class postConstructor {
@@ -78,14 +104,3 @@ app.route('/compose')
 
 
 
-// SERVER RUNNING
-const port = process.env.PORT || 3000;
-const hostname = 'localhost';
-
-app.listen(port, hostname, (err) => {
-  if (err) {
-    return console.log("Something went wrong: " + err);
-  } else {
-    console.log(`Server running on port ${port}...`)
-  }
-})
