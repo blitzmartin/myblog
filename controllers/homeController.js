@@ -14,9 +14,13 @@ const showHomepage = function (req, res) {
 
 // posts/Post-title    NEEDS FIX!!!!!!!
 const showOnePost = function (req, res) {
-    blogModel.findOne({'title': req.params.id})  //titolo
+    blogModel.findOne({_id: req.params.id})  //titolo
     .then(data => {
-      res.render('posts', {post: data});
+      res.render('posts', {
+        title: data.title,
+        content: data.content,
+        date: data.date
+      });
     })
 }
 
