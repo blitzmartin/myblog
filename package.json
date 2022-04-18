@@ -4,10 +4,14 @@
   "description": "my first attempt of a blog using EJS templating",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./app.js"
   },
   "author": "Annalisa De Martino",
   "license": "ISC",
+  "engines": {
+    "node": "16.13.2"
+  },
   "dependencies": {
     "dotenv": "^16.0.0",
     "ejs": "^3.0.2",
