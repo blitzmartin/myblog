@@ -4,8 +4,7 @@
   "description": "my first attempt of a blog using EJS templating",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./app.js"
+    "start": "node app.js"
   },
   "author": "Annalisa De Martino",
   "license": "ISC",
