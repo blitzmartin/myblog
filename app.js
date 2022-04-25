@@ -1,10 +1,14 @@
+// Require modules
+
 const express = require("express");
 const ejs = require("ejs");
 const mongoose = require('mongoose');
 const dotenv = require('dotenv')
 
+// Create express server
 const app = express();
 
+// set Public folder, views folder and scan
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
